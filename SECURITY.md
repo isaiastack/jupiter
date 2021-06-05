@@ -10,7 +10,9 @@
 | 1.14.1   | :x: |
 | 1.14.2   | :x: |
 | 1.14.3   | :x: |
-| 2.0.0   | :white_check_mark: |
+| 2.0.0   | :x:  |
+| 2.0.1   | :x:  |
+| 2.1.0   | :white_check_mark: |
 
 ## Reporting a Vulnerability
 
