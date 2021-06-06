@@ -231,6 +231,31 @@ public final class Generator implements Comparable<Generator> {
         Generator.delayTime = delay;
     }
 
+//    static boolean verifyHit(BigInteger hit, BigInteger effectiveBalance, Block previousBlock, int timestamp) {
+//        int elapsedTime = timestamp - previousBlock.getTimestamp();
+//        if (elapsedTime <= 0) {
+//            return false;
+//        }
+//        BigInteger effectiveBaseTarget = BigInteger.valueOf(previousBlock.getBaseTarget()).multiply(effectiveBalance);
+//        BigInteger prevTarget = effectiveBaseTarget.multiply(BigInteger.valueOf(elapsedTime - 1));
+//        BigInteger target = prevTarget.add(effectiveBaseTarget);
+//        
+//        
+//		if (previousBlock.getHeight() < Constants.BLOCK_HEIGHT_HARD_FORK_GENERATION_TIME) {
+//			return hit.compareTo(target) < 0
+//			   && (hit.compareTo(prevTarget) >= 0
+//			   || (Constants.isTestnet ? elapsedTime > 300 : elapsedTime > 3600)
+//			   || Constants.isOffline);
+//		} else {
+//			return hit.compareTo(target) < 0
+//			   && (hit.compareTo(prevTarget) >= 0
+//			   || (elapsedTime <= MIN_BLOCK_TIME + 1)
+//			   || (Constants.isTestnet ? elapsedTime > 300 : elapsedTime > 3600)
+//			   || Constants.isOffline);
+//		}
+//    }
+    
+    
     static boolean verifyHit(BigInteger hit, BigInteger effectiveBalance, Block previousBlock, int timestamp) {
         int elapsedTime = timestamp - previousBlock.getTimestamp();
         if (elapsedTime <= 0) {
@@ -239,20 +264,10 @@ public final class Generator implements Comparable<Generator> {
         BigInteger effectiveBaseTarget = BigInteger.valueOf(previousBlock.getBaseTarget()).multiply(effectiveBalance);
         BigInteger prevTarget = effectiveBaseTarget.multiply(BigInteger.valueOf(elapsedTime - 1));
         BigInteger target = prevTarget.add(effectiveBaseTarget);
-        
-        
-		if (previousBlock.getHeight() < Constants.BLOCK_HEIGHT_HARD_FORK_GENERATION_TIME) {
-			return hit.compareTo(target) < 0
-			   && (hit.compareTo(prevTarget) >= 0
-			   || (Constants.isTestnet ? elapsedTime > 300 : elapsedTime > 3600)
-			   || Constants.isOffline);
-		} else {
-			return hit.compareTo(target) < 0
-			   && (hit.compareTo(prevTarget) >= 0
-			   || (elapsedTime <= MIN_BLOCK_TIME + 1)
-			   || (Constants.isTestnet ? elapsedTime > 300 : elapsedTime > 3600)
-			   || Constants.isOffline);
-		}
+        return hit.compareTo(target) < 0
+                && (hit.compareTo(prevTarget) >= 0
+                || (Constants.isTestnet ? elapsedTime > 300 : elapsedTime > 3600)
+                || Constants.isOffline);
     }
 
     static boolean allowsFakeForging(byte[] publicKey) {
