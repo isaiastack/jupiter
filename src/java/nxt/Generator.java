@@ -265,6 +265,9 @@ public final class Generator implements Comparable<Generator> {
         BigInteger effectiveBaseTarget = BigInteger.valueOf(previousBlock.getBaseTarget()).multiply(effectiveBalance);
         BigInteger prevTarget = effectiveBaseTarget.multiply(BigInteger.valueOf(elapsedTime - 1));
         BigInteger target = prevTarget.add(effectiveBaseTarget);
+        
+        Logger.logDebugMessage(hit.toString());
+        Logger.logDebugMessage(target.toString());
         Logger.logDebugMessage(String.valueOf(hit.compareTo(target)));
         Logger.logDebugMessage(String.valueOf(hit.compareTo(prevTarget) >= 0));
         Logger.logDebugMessage(String.valueOf(Constants.isTestnet ? elapsedTime > 300 : elapsedTime > 3600));
