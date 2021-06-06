@@ -258,6 +258,7 @@ public final class Generator implements Comparable<Generator> {
     
     static boolean verifyHit(BigInteger hit, BigInteger effectiveBalance, Block previousBlock, int timestamp) {
         int elapsedTime = timestamp - previousBlock.getTimestamp();
+        Logger.logDebugMessage("elapsed time " + elapsedTime);
         if (elapsedTime <= 0) {
             return false;
         }
