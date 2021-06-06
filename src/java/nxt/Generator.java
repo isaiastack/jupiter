@@ -271,7 +271,7 @@ public final class Generator implements Comparable<Generator> {
         Logger.logDebugMessage(String.valueOf(Constants.isOffline));
         Logger.logDebugMessage(String.valueOf((hit.compareTo(prevTarget) >= 0
                 || (Constants.isTestnet ? elapsedTime > 300 : elapsedTime > 3600)
-                || Constants.isOffline));
+                || Constants.isOffline)));
         
         return hit.compareTo(target) < 0
                 && (hit.compareTo(prevTarget) >= 0
