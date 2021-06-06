@@ -359,7 +359,7 @@ final class BlockImpl implements Block {
 
             boolean verifyHit = Generator.verifyHit(hit, BigInteger.valueOf(effectiveBalance), previousBlock, timestamp);
             if (!verifyHit) {
-            	if (previousBlock.getHeight() == 1236473) {
+            	if (previousBlock.getHeight() == 1236473 || previousBlock.getHeight() == 1244720) {
             		Logger.logMessage("Error verifying the block hit, block height " + previousBlock.getHeight());
             		return true;
             	}
