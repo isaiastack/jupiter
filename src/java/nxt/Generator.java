@@ -241,6 +241,12 @@ public final class Generator implements Comparable<Generator> {
         BigInteger target = prevTarget.add(effectiveBaseTarget);
         
         
+        Logger.logDebugMessage(" " + elapsedTime);
+        Logger.logDebugMessage(" " +Boolean.valueOf(hit.compareTo(target) < 0).toString());
+        Logger.logDebugMessage(" " +Boolean.valueOf(hit.compareTo(prevTarget) >= 0).toString());
+        Logger.logDebugMessage(" " +Boolean.valueOf(elapsedTime <= MIN_BLOCK_TIME + 1).toString());
+        
+        
 		if (previousBlock.getHeight() < Constants.BLOCK_HEIGHT_HARD_FORK_GENERATION_TIME) {
 			return hit.compareTo(target) < 0
 			   && (hit.compareTo(prevTarget) >= 0
